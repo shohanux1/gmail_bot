@@ -1,10 +1,13 @@
+import os
 import random
 import string
 import sqlite3
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 from datetime import datetime, timedelta
-
+from dotenv import load_dotenv
+# loading variables from .env file
+load_dotenv() 
 
 
 PAYMENT_PER_ACCOUNT = 6.00  # 6.00 BDT per Gmail registration
@@ -284,7 +287,7 @@ async def main(update: Update, context: ContextTypes.DEFAULT_TYPE):
 if __name__ == "__main__":
     init_db()  # Initialize the database
 
-    app = ApplicationBuilder().token("7471551826:AAF-73to8B8jPQpMx9wOvobL5vD6fun3foQ").build()
+    app = ApplicationBuilder().token(os.getenv("TELEGRAM_BOT_TOKEN")).build()
 
     app.add_handler(CommandHandler("start", start))
     # Setting up handlers
