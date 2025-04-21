@@ -11,7 +11,7 @@ load_dotenv()
 
 
 PAYMENT_PER_ACCOUNT = 6.00  # 6.00 BDT per Gmail registration
-
+PORT = os.getenv("PORT")
 
 # Initialize Database
 def init_db():
@@ -303,7 +303,7 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.Text("📜 Balance History"), balance_history))
     app.add_handler(MessageHandler(filters.Text("🔙 Back"), back))
 
-    print("Bot is running...")
+    print("Bot is running... on {PORT}")
     app.run_polling()
 
 
